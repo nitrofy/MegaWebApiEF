@@ -1,11 +1,25 @@
+using Microsoft.EntityFrameworkCore;
+using MegaWebApiEF.Infrastructure.DBAccess;
+using MegaWebApiEF.Application.Interfaces;
+using MegaWebApiEF.Application.Services;
+using MegaWebApiEF.Infrastructure.Interfaces;
+using MegaWebApiEF.Infrastructure.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddDbContext<MegaAppEFDBontext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("MegaAppEFDB"), b => b.MigrationsAssembly("MegaWebApiEF"))
+);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IProductService,ProductService>();
+builder.Services.AddScoped<IProductRepository,ProductRepository>();
+
 
 var app = builder.Build();
 

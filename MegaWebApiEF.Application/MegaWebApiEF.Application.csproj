@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MegaWebApiEF.Infrastructure\MegaWebApiEF.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
