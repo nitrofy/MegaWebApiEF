@@ -16,14 +16,14 @@ namespace MegaWebApiEF.Controllers
             _productService = productService;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            return Ok(await _productService.GetProducts());
+            return Ok(_productService.GetProducts());
         }
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] AddProductDto addProductDTO)
+        public IActionResult Add([FromBody] AddProductDto addProductDTO)
         {
-            return Ok(await _productService.AddProduct(addProductDTO));
+            return Ok(_productService.AddProduct(addProductDTO));
         }
     }
 }

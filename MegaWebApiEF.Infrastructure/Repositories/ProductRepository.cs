@@ -18,16 +18,16 @@ namespace MegaWebApiEF.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<List<Product>> GetProducts()
+        public List<Product> GetProducts()
         {
-            var resultList = await _dbContext.Products.ToListAsync();
+            var resultList = _dbContext.Products.ToList();
             return resultList;
         }
-        public async Task<List<Product>> AddProduct(Product product)
+        public List<Product> AddProduct(Product product)
         {
-            await _dbContext.Products.AddAsync(product);
-            await _dbContext.SaveChangesAsync();
-            return await GetProducts();
+            _dbContext.Products.Add(product);
+            _dbContext.SaveChanges();
+            return GetProducts();
         }
     }
 }

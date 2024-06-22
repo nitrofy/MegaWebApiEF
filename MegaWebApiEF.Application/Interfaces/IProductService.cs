@@ -10,7 +10,7 @@ namespace MegaWebApiEF.Application.Interfaces
 {
     public interface IProductService
     {
-        Task<List<Product>> GetProducts();
-        Task<List<Product>> AddProduct(AddProductDto addProduct);
+        List<Product> GetProducts();
+        List<Product> AddProduct(AddProductDto addProduct);
     }
 }

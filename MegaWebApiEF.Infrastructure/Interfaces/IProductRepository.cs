@@ -10,7 +10,7 @@ namespace MegaWebApiEF.Infrastructure.Interfaces
 {
     public interface IProductRepository
     {
-        Task<List<Product>> GetProducts();
-        Task<List<Product>> AddProduct(Product product);
+        List<Product> GetProducts();
+        List<Product>AddProduct(Product product);
     }
 }

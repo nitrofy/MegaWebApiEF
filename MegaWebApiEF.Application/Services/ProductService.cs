@@ -18,12 +18,12 @@ namespace MegaWebApiEF.Application.Services
         {
             _productRepository = productRepository;
         }
-        public async Task<List<Product>> GetProducts()
+        public List<Product> GetProducts()
         {
-            var resultList = await _productRepository.GetProducts();
+            var resultList = _productRepository.GetProducts();
             return resultList;
         }
-        public async Task<List<Product>> AddProduct(AddProductDto addProduct)
+        public List<Product> AddProduct(AddProductDto addProduct)
         {
             var newProduct = new Product
             {
@@ -31,7 +31,7 @@ namespace MegaWebApiEF.Application.Services
                 Tags = addProduct.Tags,
                 Description = addProduct.Description
             };
-            return await _productRepository.AddProduct(newProduct);
+            return _productRepository.AddProduct(newProduct);
         }
     }
 }
