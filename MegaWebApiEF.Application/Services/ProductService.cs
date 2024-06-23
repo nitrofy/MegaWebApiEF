@@ -23,6 +23,11 @@ namespace MegaWebApiEF.Application.Services
             var resultList = _productRepository.GetProducts();
             return resultList;
         }
+        public List<Product> GetProductById(int id)
+        {
+            var resultList = _productRepository.GetProductById(id);
+            return resultList;
+        }
         public List<Product> AddProduct(AddProductDto addProduct)
         {
             var newProduct = new Product

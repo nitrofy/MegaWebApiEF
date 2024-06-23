@@ -20,6 +20,12 @@ namespace MegaWebApiEF.Controllers
         {
             return Ok(_productService.GetProducts());
         }
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetProductById(int id)
+        {
+            return Ok(_productService.GetProductById(id));
+        }
         [HttpPost]
         public IActionResult Add([FromBody] AddProductDto addProductDTO)
         {

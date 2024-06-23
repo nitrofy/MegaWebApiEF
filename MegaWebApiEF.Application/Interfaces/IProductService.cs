@@ -11,6 +11,7 @@ namespace MegaWebApiEF.Application.Interfaces
     public interface IProductService
     {
         List<Product> GetProducts();
+        List<Product> GetProductById(int id);
         List<Product> AddProduct(AddProductDto addProduct);
     }
 }

@@ -23,6 +23,11 @@ namespace MegaWebApiEF.Infrastructure.Repositories
             var resultList = _dbContext.Products.ToList();
             return resultList;
         }
+        public List<Product> GetProductById(int id)
+        {
+            var resultList = _dbContext.Products.Where(p => p.Id == id).ToList();
+            return resultList;
+        }
         public List<Product> AddProduct(Product product)
         {
             _dbContext.Products.Add(product);
