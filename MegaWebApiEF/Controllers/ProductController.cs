@@ -27,9 +27,14 @@ namespace MegaWebApiEF.Controllers
             return Ok(_productService.GetProductById(id));
         }
         [HttpPost]
-        public IActionResult Add([FromBody] AddProductDto addProductDTO)
+        public IActionResult Add([FromBody] AddProductDto addProductDto)
         {
-            return Ok(_productService.AddProduct(addProductDTO));
+            return Ok(_productService.AddProduct(addProductDto));
+        }
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateProductDto updateProductDto)
+        {
+            return Ok(_productService.UpdateProduct(updateProductDto));
         }
     }
 }

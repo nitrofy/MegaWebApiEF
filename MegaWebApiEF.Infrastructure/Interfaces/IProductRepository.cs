@@ -13,5 +13,6 @@ namespace MegaWebApiEF.Infrastructure.Interfaces
         List<Product> GetProducts();
         List<Product> GetProductById(int id);
         List<Product>AddProduct(Product product);
+        List<Product>UpdateProduct(Product product);
     }
 }

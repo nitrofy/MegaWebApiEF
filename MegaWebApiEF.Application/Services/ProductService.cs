@@ -28,15 +28,26 @@ namespace MegaWebApiEF.Application.Services
             var resultList = _productRepository.GetProductById(id);
             return resultList;
         }
-        public List<Product> AddProduct(AddProductDto addProduct)
+        public List<Product> AddProduct(AddProductDto addProductDto)
         {
-            var newProduct = new Product
+            var addProduct = new Product
             {
-                Name = addProduct.Name,
-                Tags = addProduct.Tags,
-                Description = addProduct.Description
+                Name = addProductDto.Name,
+                Tags = addProductDto.Tags,
+                Description = addProductDto.Description
             };
-            return _productRepository.AddProduct(newProduct);
+            return _productRepository.AddProduct(addProduct);
+        }
+        public List<Product> UpdateProduct(UpdateProductDto updateProductDto)
+        {
+            var updateProduct = new Product
+            {
+                Id = updateProductDto.Id,
+                Name = updateProductDto.Name,
+                Tags = updateProductDto.Tags,
+                Description = updateProductDto.Description
+            };
+            return _productRepository.UpdateProduct(updateProduct);
         }
     }
 }

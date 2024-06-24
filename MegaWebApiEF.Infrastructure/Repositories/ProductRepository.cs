@@ -32,7 +32,17 @@ namespace MegaWebApiEF.Infrastructure.Repositories
         {
             _dbContext.Products.Add(product);
             _dbContext.SaveChanges();
-            return GetProducts();
+            return GetProductById(product.Id);
+        }
+        public List<Product> UpdateProduct(Product product)
+        {
+            Product existingProduct = _dbContext.Products.Where(p => p.Id == product.Id).FirstOrDefault();
+            if (existingProduct != null)
+            {
+                existingProduct = product;
+                _dbContext.SaveChanges();
+            }
+            return GetProductById(product.Id);
         }
     }
 }
