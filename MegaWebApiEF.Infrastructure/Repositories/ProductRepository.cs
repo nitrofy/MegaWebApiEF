@@ -28,21 +28,38 @@ namespace MegaWebApiEF.Infrastructure.Repositories
             var resultList = _dbContext.Products.Where(p => p.Id == id).ToList();
             return resultList;
         }
-        public List<Product> AddProduct(Product product)
+        public bool AddProduct(List<Product> products)
         {
-            _dbContext.Products.Add(product);
-            _dbContext.SaveChanges();
-            return GetProductById(product.Id);
+            int rowsaffected = 0;
+            foreach (var item in products)
+            {                
+                _dbContext.Products.Add(item);
+            }
+            rowsaffected = _dbContext.SaveChanges();
+            return rowsaffected>0;
         }
-        public List<Product> UpdateProduct(Product product)
+        public bool UpdateProduct(Product product)
         {
-            Product existingProduct = _dbContext.Products.Where(p => p.Id == product.Id).FirstOrDefault();
+            int rowsaffected = 0;
+            var existingProduct = _dbContext.Products.Find(product.Id);
             if (existingProduct != null)
             {
-                existingProduct = product;
-                _dbContext.SaveChanges();
+                //existingProduct = product;
+                _dbContext.Products.Entry(existingProduct).CurrentValues.SetValues(product);
+                rowsaffected = _dbContext.SaveChanges();
             }
-            return GetProductById(product.Id);
+            return rowsaffected > 0;
+        }
+        public bool DeleteProduct(int productId)
+        {
+            int rowsaffected = 0;
+            Product existingProduct = _dbContext.Products.Where(p => p.Id == productId).FirstOrDefault();
+            if (existingProduct != null)
+            {
+                _dbContext.Products.Remove(existingProduct);
+                rowsaffected = _dbContext.SaveChanges();
+            }
+            return rowsaffected > 0;
         }
     }
 }

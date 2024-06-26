@@ -27,7 +27,7 @@ namespace MegaWebApiEF.Controllers
             return Ok(_productService.GetProductById(id));
         }
         [HttpPost]
-        public IActionResult Add([FromBody] AddProductDto addProductDto)
+        public IActionResult Add([FromBody] List<AddProductDto> addProductDto)
         {
             return Ok(_productService.AddProduct(addProductDto));
         }
@@ -35,6 +35,12 @@ namespace MegaWebApiEF.Controllers
         public IActionResult Update([FromBody] UpdateProductDto updateProductDto)
         {
             return Ok(_productService.UpdateProduct(updateProductDto));
+        }
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult DeleteProduct(int id)
+        {
+            return Ok(_productService.DeleteProduct(id));
         }
     }
 }

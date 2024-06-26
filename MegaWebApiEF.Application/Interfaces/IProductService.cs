@@ -12,7 +12,8 @@ namespace MegaWebApiEF.Application.Interfaces
     {
         List<Product> GetProducts();
         List<Product> GetProductById(int id);
-        List<Product> AddProduct(AddProductDto addProduct);
-        List<Product> UpdateProduct(UpdateProductDto updateProduct);
+        bool AddProduct(List<AddProductDto> addProduct);
+        bool UpdateProduct(UpdateProductDto updateProduct);
+        bool DeleteProduct(int productId);
     }
 }

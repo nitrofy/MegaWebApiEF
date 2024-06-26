@@ -28,17 +28,26 @@ namespace MegaWebApiEF.Application.Services
             var resultList = _productRepository.GetProductById(id);
             return resultList;
         }
-        public List<Product> AddProduct(AddProductDto addProductDto)
+        public bool AddProduct(List<AddProductDto> addProductDto)
         {
-            var addProduct = new Product
+            if(addProductDto.Count > 0)
             {
-                Name = addProductDto.Name,
-                Tags = addProductDto.Tags,
-                Description = addProductDto.Description
-            };
-            return _productRepository.AddProduct(addProduct);
+                List<Product> products = new List<Product>();
+
+                foreach (var item in addProductDto)
+                {
+                    products.Add(new Product
+                    {
+                        Name = item.Name,
+                        Tags = item.Tags,
+                        Description = item.Description
+                    });
+                }
+            return _productRepository.AddProduct(products);
+            }
+            return false;
         }
-        public List<Product> UpdateProduct(UpdateProductDto updateProductDto)
+        public bool UpdateProduct(UpdateProductDto updateProductDto)
         {
             var updateProduct = new Product
             {
@@ -48,6 +57,10 @@ namespace MegaWebApiEF.Application.Services
                 Description = updateProductDto.Description
             };
             return _productRepository.UpdateProduct(updateProduct);
+        }
+        public bool DeleteProduct(int productId)
+        {
+            return _productRepository.DeleteProduct(productId);
         }
     }
 }
